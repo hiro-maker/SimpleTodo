@@ -9,6 +9,8 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.hiromaker.simpletodo.R
 
 class MainFragment : Fragment() {
@@ -59,6 +61,18 @@ class MainFragment : Fragment() {
         //Header
         viewPager = view.findViewById(R.id.pager)
         viewPager.adapter = TaskPageAdapter(this)
+        viewPager.isUserInputEnabled = false
+
+        val term = view.findViewById<TabLayout>(R.id.term_tab)
+        TabLayoutMediator(term, viewPager) { tab, position ->
+            tab.text = when(position) {
+                0 -> { getString(R.string.daily) }
+                1 -> { getString(R.string.weekly) }
+                2 -> { getString(R.string.monthly) }
+                else -> ""
+            }
+        }.attach()
+
         //List
         //date
         //Footer

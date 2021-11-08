@@ -25,22 +25,19 @@ class TaskPageFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val taskListData = arrayListOf<Task>()
+
         arguments?.takeIf { it.containsKey(ARG_OBJECT) }?.apply {
-//            val textView: TextView = view.findViewById(android.R.id.text1)
-//            textView.text = getInt(ARG_OBJECT).toString()
+            taskListData.add(Task(getInt(ARG_OBJECT).toString(), "title0", "", "", "", false, 0, 0, false, emptyArray()))
         }
 
-        val taskListView = view.findViewById<RecyclerView>(R.id.task_list)
-        taskListView.layoutManager = LinearLayoutManager(context)
-
-
-        val taskListData = arrayListOf<Task>()
         taskListData.add(Task("a.", "title1", "", "", "", false, 0, 0, false, emptyArray()))
         taskListData.add(Task("b.", "title2", "", "", "", false, 0, 0, true, emptyArray()))
         taskListData.add(Task("c.", "title3", "", "", "", false, 0, 0, false, emptyArray()))
-        taskListData.add(Task("d.", "title4", "", "", "", false, 0, 0, false, emptyArray()))
+        taskListData.add(Task("d.", "title4", "", "", "", false, 0, 0, true, emptyArray()))
 
-
+        val taskListView = view.findViewById<RecyclerView>(R.id.task_list)
+        taskListView.layoutManager = LinearLayoutManager(context)
         taskListView.adapter = TaskRecyclerViewAdapter(taskListData)
     }
 }
