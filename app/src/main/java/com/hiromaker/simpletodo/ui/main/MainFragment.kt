@@ -8,6 +8,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewpager2.widget.ViewPager2
 import com.hiromaker.simpletodo.R
 
 class MainFragment : Fragment() {
@@ -17,6 +18,8 @@ class MainFragment : Fragment() {
     }
 
     private lateinit var viewModel: MainViewModel
+
+    private lateinit var viewPager: ViewPager2
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,6 +57,8 @@ class MainFragment : Fragment() {
         })
 
         //Header
+        viewPager = view.findViewById(R.id.pager)
+        viewPager.adapter = TaskPageAdapter(this)
         //List
         //date
         //Footer
