@@ -1,7 +1,7 @@
 package com.hiromaker.simpletodo
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.hiromaker.simpletodo.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
