@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hiromaker.simpletodo.R
-import com.hiromaker.simpletodo.data.model.Task
+import com.hiromaker.simpletodo.data.local.entity.Task
 
 
-class TaskRecyclerViewAdapter(private val taskList: ArrayList<Task>) :
+class TaskRecyclerViewAdapter(private val taskList: List<Task>) :
     RecyclerView.Adapter<TaskViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         return TaskViewHolder(

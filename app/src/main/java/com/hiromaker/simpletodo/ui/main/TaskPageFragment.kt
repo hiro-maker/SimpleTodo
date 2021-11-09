@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.hiromaker.simpletodo.MyApplication
 import com.hiromaker.simpletodo.R
-import com.hiromaker.simpletodo.data.model.Task
+import com.hiromaker.simpletodo.data.local.entity.Task
 
 class TaskPageFragment : Fragment() {
 
@@ -25,17 +26,25 @@ class TaskPageFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val taskListData = arrayListOf<Task>()
+        val taskListData = mutableListOf<Task>()
+        taskListData.addAll(MyApplication.database.taskDao().getTaskListNow())
 
         arguments?.takeIf { it.containsKey(ARG_OBJECT) }?.apply {
-            taskListData.add(Task(getInt(ARG_OBJECT).toString(), "title0", "", "", "", false, 0, 0, false, emptyArray()))
+            taskListData.add(
+                Task(
+                    0,
+                    getInt(ARG_OBJECT).toString(),
+                    "title0",
+                    "",
+                    "",
+                    "",
+                    false,
+                    0,
+                    0,
+                    false
+                )
+            )
         }
-
-        taskListData.add(Task("a.", "title1", "", "", "", false, 0, 0, false, emptyArray()))
-        taskListData.add(Task("b.", "title2", "", "", "", false, 0, 0, true, emptyArray()))
-        taskListData.add(Task("c.", "title3", "", "", "", false, 0, 0, false, emptyArray()))
-        taskListData.add(Task("d.", "title4", "", "", "", false, 0, 0, true, emptyArray()))
-
         val taskListView = view.findViewById<RecyclerView>(R.id.task_list)
         taskListView.layoutManager = LinearLayoutManager(context)
         taskListView.adapter = TaskRecyclerViewAdapter(taskListData)
