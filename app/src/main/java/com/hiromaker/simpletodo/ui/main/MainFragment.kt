@@ -59,7 +59,7 @@ class MainFragment : Fragment() {
             countMessageView.text = countMessage
         })
 
-        //Header
+        //Header, TaskList, Date
         viewPager = view.findViewById(R.id.pager)
         viewPager.adapter = TermPageAdapter(this)
         viewPager.isUserInputEnabled = false
@@ -69,9 +69,6 @@ class MainFragment : Fragment() {
             tab.text = Term.values()[position].name
         }.attach()
 
-        //List
-
-        //date
         //Footer
     }
 }

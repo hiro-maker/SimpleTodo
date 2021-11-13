@@ -4,5 +4,5 @@ import androidx.lifecycle.ViewModel
 import com.hiromaker.simpletodo.MyApplication
 
 class TaskViewModel : ViewModel() {
-    val mTaskList = MyApplication.database.taskDao().getTaskListNow()
+    val mTaskList = MyApplication.database.taskDao().getTaskList()
 }
