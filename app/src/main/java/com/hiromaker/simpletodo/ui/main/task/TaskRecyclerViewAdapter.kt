@@ -1,4 +1,4 @@
-package com.hiromaker.simpletodo.ui.main
+package com.hiromaker.simpletodo.ui.main.task
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

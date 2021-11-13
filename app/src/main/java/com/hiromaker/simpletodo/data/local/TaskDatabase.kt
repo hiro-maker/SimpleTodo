@@ -15,6 +15,8 @@ abstract class TaskDatabase : RoomDatabase() {
 
     companion object {
 
+        private const val DB_NAME = "Task.db"
+
         private var INSTANCE: TaskDatabase? = null
 
         private val lock = Any()
@@ -24,7 +26,7 @@ abstract class TaskDatabase : RoomDatabase() {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(
                         context.applicationContext,
-                        TaskDatabase::class.java, "Task.db"
+                        TaskDatabase::class.java, DB_NAME
                     )
                         .addCallback(object : RoomDatabase.Callback() {
                             override fun onCreate(db: SupportSQLiteDatabase) {
