@@ -27,11 +27,11 @@ const val TASK_INIT_DATA = "INSERT INTO 'task' VALUES " +
         "(NULL, 'b.', 'title02', NULL, NULL, NULL, false, 0, 0, true)," +
         "(NULL, 'c.', 'title03', NULL, NULL, NULL, false, 0, 0, false)," +
         "(NULL, 'd.', 'title04', NULL, NULL, NULL, false, 0, 0, true)," +
-        "(NULL, 'a.', 'title11', NULL, NULL, NULL, false, 1, 0, false)," +
+        "(NULL, 'a.', 'title11', NULL, NULL, NULL, false, 1, 0, true)," +
         "(NULL, 'b.', 'title12', NULL, NULL, NULL, false, 1, 0, true)," +
         "(NULL, 'c.', 'title13', NULL, NULL, NULL, false, 1, 0, false)," +
-        "(NULL, 'd.', 'title14', NULL, NULL, NULL, false, 1, 0, true)," +
-        "(NULL, 'a.', 'title11', NULL, NULL, NULL, false, 2, 0, false)," +
-        "(NULL, 'b.', 'title12', NULL, NULL, NULL, false, 2, 0, true)," +
-        "(NULL, 'c.', 'title13', NULL, NULL, NULL, false, 2, 0, false)," +
-        "(NULL, 'd.', 'title14', NULL, NULL, NULL, false, 2, 0, true)"
+        "(NULL, 'd.', 'title14', NULL, NULL, NULL, false, 1, 0, false)," +
+        "(NULL, 'a.', 'title21', NULL, NULL, NULL, false, 2, 0, false)," +
+        "(NULL, 'b.', 'title22', NULL, NULL, NULL, false, 2, 0, false)," +
+        "(NULL, 'c.', 'title23', NULL, NULL, NULL, false, 2, 0, true)," +
+        "(NULL, 'd.', 'title24', NULL, NULL, NULL, false, 2, 0, true)"
