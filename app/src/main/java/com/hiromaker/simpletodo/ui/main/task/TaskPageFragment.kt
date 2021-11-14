@@ -26,7 +26,6 @@ class TaskPageFragment(private val term: Term) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel.mTaskList.observe(viewLifecycleOwner, { list ->
-            // TODO WEEKLYタブを選択するとMONTHLYタブが生成される
             val taskListView = view.findViewById<RecyclerView>(R.id.task_list)
             taskListView.layoutManager = LinearLayoutManager(context)
             taskListView.adapter = TaskRecyclerViewAdapter(list.filter { it.term == term.ordinal })
