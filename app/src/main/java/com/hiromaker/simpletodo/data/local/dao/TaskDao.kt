@@ -9,14 +9,17 @@ import com.hiromaker.simpletodo.data.local.entity.Task
 
 @Dao
 interface TaskDao {
-    @Query("SELECT * FROM Task")
-    fun getTaskList(): LiveData<List<Task>>
-
     @Insert
     fun insert(data: Task)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveMovies(movieEntities: List<Task>)
+
+    @Query("SELECT * FROM Task")
+    fun getTaskList(): LiveData<List<Task>>
+
+    @Query("SELECT * FROM Task WHERE term=:term")
+    fun getTaskList(term: Int): LiveData<List<Task>>
 
     @Query("SELECT * FROM Task WHERE id=:id")
     fun getTask(id: Int): LiveData<Task>

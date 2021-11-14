@@ -9,8 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hiromaker.simpletodo.R
+import com.hiromaker.simpletodo.util.Term
 
-class TaskPageFragment(private val position: Int) : Fragment() {
+class TaskPageFragment(private val term: Term) : Fragment() {
 
     private lateinit var viewModel: TaskViewModel
 
@@ -24,11 +25,11 @@ class TaskPageFragment(private val position: Int) : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.mTaskList.observe(viewLifecycleOwner, { list ->
-            // TODO WEEKLYタブを選択するとMONTHLYタブが生成される
+
+        viewModel.getTaskList(term.ordinal).observe(viewLifecycleOwner, { list ->
             val taskListView = view.findViewById<RecyclerView>(R.id.task_list)
             taskListView.layoutManager = LinearLayoutManager(context)
-            taskListView.adapter = TaskRecyclerViewAdapter(list.filter { it.term == (position) })
+            taskListView.adapter = TaskRecyclerViewAdapter(list.filter { it.term == term.ordinal })
         })
     }
 }

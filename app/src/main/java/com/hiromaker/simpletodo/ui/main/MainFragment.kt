@@ -22,8 +22,6 @@ class MainFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
 
-    private lateinit var viewPager: ViewPager2
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState:
@@ -59,16 +57,17 @@ class MainFragment : Fragment() {
             countMessageView.text = countMessage
         })
 
-        //Header, TaskList, Date
-        viewPager = view.findViewById(R.id.pager)
-        viewPager.adapter = TermPageAdapter(this)
-        viewPager.isUserInputEnabled = false
-
+        //Header, TaskList
+        val viewPager = view.findViewById<ViewPager2>(R.id.pager).apply {
+            adapter = TermPageAdapter(this@MainFragment)
+            isUserInputEnabled = false
+        }
         val term = view.findViewById<TabLayout>(R.id.term_tab)
         TabLayoutMediator(term, viewPager) { tab, position ->
             tab.text = Term.values()[position].name
         }.attach()
 
-        //Footer
+        // Date
+        // Footer
     }
 }
