@@ -57,7 +57,7 @@ class MainFragment : Fragment() {
             countMessageView.text = countMessage
         })
 
-        //Header, TaskList, Date
+        //Header, TaskList
         val viewPager = view.findViewById<ViewPager2>(R.id.pager).apply {
             adapter = TermPageAdapter(this@MainFragment)
             isUserInputEnabled = false
@@ -67,6 +67,7 @@ class MainFragment : Fragment() {
             tab.text = Term.values()[position].name
         }.attach()
 
-        //Footer
+        // Date
+        // Footer
     }
 }

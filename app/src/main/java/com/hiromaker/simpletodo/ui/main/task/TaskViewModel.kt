@@ -1,8 +1,12 @@
 package com.hiromaker.simpletodo.ui.main.task
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.hiromaker.simpletodo.MyApplication
+import com.hiromaker.simpletodo.data.local.entity.Task
 
 class TaskViewModel : ViewModel() {
-    val mTaskList = MyApplication.database.taskDao().getTaskList()
+    fun getTaskList(term: Int): LiveData<List<Task>> {
+        return MyApplication.database.taskDao().getTaskList(term)
+    }
 }
