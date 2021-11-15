@@ -1,73 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/content_tab"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".ui.main.MainFragment">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/term_tab"
+    <RelativeLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:contentDescription="Select Tab" />
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/pager"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/view_model_example"
-        android:layout_below="@id/term_tab" />
-
-    <LinearLayout
-        android:id="@+id/view_model_example"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/content_tab"
-        android:layout_centerVertical="true"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/countUpButton"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/term_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:contentDescription="Select Tab" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/view_model_example"
+            android:layout_below="@id/term_tab" />
+
+        <LinearLayout
+            android:id="@+id/view_model_example"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="push" />
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/viewModelValueView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="MainFragment" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/countUpButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="push" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/countMessageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="MainFragment" />
-    </LinearLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/viewModelValueView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MainFragment" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/content_tab"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/countMessageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MainFragment" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottom_app_bar"
+        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_gravity="bottom"
+        app:menu="@menu/bottom_app_bar"
+        app:navigationIcon="@drawable/ic_baseline_person_24" />
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Task" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Calendar" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Personal" />
-    </com.google.android.material.tabs.TabLayout>
-
-</RelativeLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/add"
+        android:src="@drawable/ic_baseline_add_24"
+        app:layout_anchor="@id/bottom_app_bar" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

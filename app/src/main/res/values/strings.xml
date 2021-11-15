@@ -3,4 +3,8 @@
     <string name="daily">daily</string>
     <string name="weekly">weekly</string>
     <string name="monthly">monthly</string>
+    <!-- menu -->
+    <string name="add">add</string>
+    <string name="home">Home</string>
+    <string name="calendar">Calendar</string>
 </resources>
