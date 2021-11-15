@@ -22,6 +22,7 @@ class AddTaskDialogFragment : BottomSheetDialogFragment() {
             it.postDelayed({
                 if (it.requestFocus()) {
                     (activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).apply {
+                        // TODO EditTextにフォーカスして、送信ボタンが隠れる
                         showSoftInput(it, InputMethodManager.SHOW_IMPLICIT)
                     }
                 }
