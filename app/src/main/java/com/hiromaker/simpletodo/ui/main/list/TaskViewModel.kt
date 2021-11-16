@@ -1,4 +1,4 @@
-package com.hiromaker.simpletodo.ui.main.task
+package com.hiromaker.simpletodo.ui.main.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

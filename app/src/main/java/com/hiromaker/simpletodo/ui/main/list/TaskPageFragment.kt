@@ -1,4 +1,4 @@
-package com.hiromaker.simpletodo.ui.main.task
+package com.hiromaker.simpletodo.ui.main.list
 
 import android.os.Bundle
 import android.view.LayoutInflater

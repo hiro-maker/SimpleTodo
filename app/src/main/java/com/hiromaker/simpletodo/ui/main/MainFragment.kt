@@ -9,9 +9,11 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hiromaker.simpletodo.R
+import com.hiromaker.simpletodo.ui.main.add.AddTaskDialogFragment
 import com.hiromaker.simpletodo.util.Term
 
 class MainFragment : Fragment() {
@@ -68,6 +70,12 @@ class MainFragment : Fragment() {
         }.attach()
 
         // Date
+
         // Footer
+        view.findViewById<FloatingActionButton>(R.id.add_fab).apply {
+            setOnClickListener {
+                AddTaskDialogFragment().show(parentFragmentManager, AddTaskDialogFragment.TAG)
+            }
+        }
     }
 }
