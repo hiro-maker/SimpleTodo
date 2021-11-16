@@ -13,7 +13,7 @@ interface TaskDao {
     fun insert(data: Task)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun saveMovies(movieEntities: List<Task>)
+    fun updateTask(movieEntities: List<Task>)
 
     @Query("SELECT * FROM Task")
     fun getTaskList(): LiveData<List<Task>>
@@ -23,4 +23,7 @@ interface TaskDao {
 
     @Query("SELECT * FROM Task WHERE id=:id")
     fun getTask(id: Int): LiveData<Task>
+
+    @Query("SELECT MAX(id) FROM Task")
+    fun getLastTaskId(): Int
 }
