@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
+import android.text.TextUtils
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
@@ -80,18 +81,23 @@ class AddTaskDialogFragment : BottomSheetDialogFragment() {
                     }
                     return@setOnEditorActionListener false
                 }
+
             }
         }
     }
 
     private fun addTask() {
-
-        dialog?.findViewById<TextInputEditText>(R.id.text_field)?.let { title ->
+        dialog?.findViewById<TextInputEditText>(R.id.text_field)?.let { titleView ->
+            val title = titleView.text.toString()
+            if (TextUtils.isEmpty(title)) {
+                dialog?.dismiss()
+                return
+            }
             (activity as? MainActivity)?.getTermPosition()?.let { term ->
                 val task = Task(
                     id = null,
                     icon = "",
-                    title = title.text.toString(),
+                    title = title,
                     description = null,
                     startTime = null,
                     endTime = null,
