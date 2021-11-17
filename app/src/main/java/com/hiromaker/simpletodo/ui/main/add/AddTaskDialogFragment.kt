@@ -4,6 +4,8 @@ import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
+import android.view.KeyEvent
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.FrameLayout
@@ -37,7 +39,12 @@ class AddTaskDialogFragment : BottomSheetDialogFragment() {
             setContentView(R.layout.input_task_sheet)
         }.let {
             settingKeyboard(it)
-            addTaskSetting(it)
+            // Push SEND.
+            it.findViewById<Button>(R.id.task_add_send)?.apply {
+                setOnClickListener {
+                    addTask()
+                }
+            }
             return it
         }
     }
@@ -55,7 +62,7 @@ class AddTaskDialogFragment : BottomSheetDialogFragment() {
                     }
                 }
             }
-            findViewById<TextInputEditText>(R.id.text_field)?.also {
+            findViewById<TextInputEditText>(R.id.text_field)?.also { it ->
                 it.postDelayed({
                     if (it.requestFocus()) {
                         (activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).apply {
@@ -63,31 +70,38 @@ class AddTaskDialogFragment : BottomSheetDialogFragment() {
                         }
                     }
                 }, 100)
+                it.setOnEditorActionListener { _, actionId, event ->
+                    if (actionId == EditorInfo.IME_ACTION_DONE
+                        || event.action == KeyEvent.ACTION_DOWN
+                        && event.keyCode == KeyEvent.KEYCODE_ENTER
+                    ) {
+                        addTask()
+                        return@setOnEditorActionListener true
+                    }
+                    return@setOnEditorActionListener false
+                }
             }
         }
     }
 
-    private fun addTaskSetting(dialog: BottomSheetDialog) {
-        dialog.findViewById<Button>(R.id.task_add_send)?.apply {
-            setOnClickListener {
-                dialog.findViewById<TextInputEditText>(R.id.text_field)?.let { title ->
-                    (activity as? MainActivity)?.getTermPosition()?.let { term ->
-                        val task = Task(
-                            id = null,
-                            icon = "",
-                            title = title.text.toString(),
-                            description = null,
-                            startTime = null,
-                            endTime = null,
-                            isRemind = false,
-                            term = term,
-                            priority = 0,
-                            isSuccess = false
-                        )
-                        viewModel.addTask(task)
-                        dialog.dismiss()
-                    }
-                }
+    private fun addTask() {
+
+        dialog?.findViewById<TextInputEditText>(R.id.text_field)?.let { title ->
+            (activity as? MainActivity)?.getTermPosition()?.let { term ->
+                val task = Task(
+                    id = null,
+                    icon = "",
+                    title = title.text.toString(),
+                    description = null,
+                    startTime = null,
+                    endTime = null,
+                    isRemind = false,
+                    term = term,
+                    priority = 0,
+                    isSuccess = false
+                )
+                viewModel.addTask(task)
+                dialog?.dismiss()
             }
         }
     }
