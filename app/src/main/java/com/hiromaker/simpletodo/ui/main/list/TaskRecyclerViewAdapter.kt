@@ -24,4 +24,12 @@ class TaskRecyclerViewAdapter(private val taskList: List<Task>) :
     }
 
     override fun getItemCount() = taskList.size
+
+    fun getItem(position: Int): Task {
+        return taskList[position]
+    }
+
+    fun getItemList(): List<Task> {
+        return taskList
+    }
 }

@@ -1,10 +1,7 @@
 package com.hiromaker.simpletodo.data.local.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.hiromaker.simpletodo.data.local.entity.Task
 
 @Dao
@@ -13,10 +10,13 @@ interface TaskDao {
     fun insert(data: Task)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun updateTask(movieEntities: List<Task>)
+    fun updateTaskList(taskEntities: List<Task>)
 
-    @Query("SELECT * FROM Task")
-    fun getTaskList(): LiveData<List<Task>>
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun updateTask(task: Task)
+
+    @Delete
+    fun deleteTask(task: Task)
 
     @Query("SELECT * FROM Task WHERE term=:term")
     fun getTaskList(term: Int): LiveData<List<Task>>
@@ -26,4 +26,14 @@ interface TaskDao {
 
     @Query("SELECT MAX(id) FROM Task")
     fun getLastTaskId(): Int
+
+    @Transaction
+    fun moveTask(fromTask: Task, toTask: Task) {
+        val fromTaskId = fromTask.id
+        val toTaskId = toTask.id
+        fromTask.id = toTaskId
+        toTask.id = fromTaskId
+        updateTask(fromTask)
+        updateTask(toTask)
+    }
 }
