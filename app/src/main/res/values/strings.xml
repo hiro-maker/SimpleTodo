@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">SimpleTodo</string>
-    <string name="daily">daily</string>
-    <string name="weekly">weekly</string>
-    <string name="monthly">monthly</string>
     <string name="task_title">TaskTitle</string>
     <!-- menu -->
     <string name="add">add</string>
     <string name="home">Home</string>
     <string name="calendar">Calendar</string>
+    <string name="select_tab">Select Tab</string>
+    <string name="push">push</string>
+    <string name="main_fragment">MainFragment</string>
 </resources>

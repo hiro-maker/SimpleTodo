@@ -11,10 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hiromaker.simpletodo.R
 import com.hiromaker.simpletodo.util.Term
-import androidx.annotation.NonNull
-
-
-
 
 
 class TaskPageFragment(private val term: Term) : Fragment() {
@@ -32,7 +28,7 @@ class TaskPageFragment(private val term: Term) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        viewModel.getTaskList(term.ordinal).observe(viewLifecycleOwner, { list ->
+        viewModel.getTaskList(term.ordinal).observe(viewLifecycleOwner) { list ->
             val taskListView = view.findViewById<RecyclerView>(R.id.task_list)
             taskListView.layoutManager = LinearLayoutManager(context)
             taskListView.adapter = TaskRecyclerViewAdapter(list.filter { it.term == term.ordinal })
@@ -73,14 +69,14 @@ class TaskPageFragment(private val term: Term) : Fragment() {
 //                    //データリストからスワイプしたデータを削除
 //                    dataList.removeAt(viewHolder.adapterPosition)
                     //リストからスワイプしたカードを削除
-                    taskListView.adapter?.notifyItemRemoved(viewHolder.adapterPosition)
+                    taskListView.adapter?.notifyItemRemoved(viewHolder.layoutPosition)
 
 
-//                    // FIXME 直DAO呼び出し法
-//                    (taskListView.adapter as TaskRecyclerViewAdapter).getItem(viewHolder.adapterPosition)
-//                        .let {
-//                            viewModel.deleteTask(it)
-//                        }
+                    // FIXME 直DAO呼び出し法
+                    (taskListView.adapter as TaskRecyclerViewAdapter).getItem(viewHolder.layoutPosition)
+                        .let {
+                            viewModel.deleteTask(it)
+                        }
                 }
 
                 override fun clearView(
@@ -94,6 +90,6 @@ class TaskPageFragment(private val term: Term) : Fragment() {
                 }
             })
             mIth.attachToRecyclerView(taskListView)
-        })
+        }
     }
 }

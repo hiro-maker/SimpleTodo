@@ -2,13 +2,11 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/content_tab"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.main.MainFragment">
 
     <RelativeLayout
-        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -18,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:contentDescription="Select Tab" />
+            android:contentDescription="@string/select_tab" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/pager"
@@ -38,19 +36,19 @@
                 android:id="@+id/countUpButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="push" />
+                android:text="@string/push" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/viewModelValueView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MainFragment" />
+                android:text="@string/main_fragment" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/countMessageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MainFragment" />
+                android:text="@string/main_fragment" />
         </LinearLayout>
     </RelativeLayout>
 

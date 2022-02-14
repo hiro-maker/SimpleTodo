@@ -21,7 +21,6 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <RelativeLayout
-        android:id="@+id/tool_area"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

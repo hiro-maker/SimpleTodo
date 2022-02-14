@@ -50,14 +50,14 @@ class MainFragment : Fragment() {
 
         // カウント時のイベント1
         val viewModelValueView = view.findViewById<AppCompatTextView>(R.id.viewModelValueView)
-        viewModel.count.observe(viewLifecycleOwner, { count ->
+        viewModel.count.observe(viewLifecycleOwner) { count ->
             viewModelValueView.text = count.toString()
-        })
+        }
         // カウント時のイベント2
         val countMessageView = view.findViewById<AppCompatTextView>(R.id.countMessageView)
-        viewModel.countMessage.observe(viewLifecycleOwner, { countMessage ->
+        viewModel.countMessage.observe(viewLifecycleOwner) { countMessage ->
             countMessageView.text = countMessage
-        })
+        }
 
         //Header, TaskList
         val viewPager = view.findViewById<ViewPager2>(R.id.pager).apply {

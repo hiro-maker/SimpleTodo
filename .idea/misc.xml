@@ -14,8 +14,11 @@
         <entry key="..\:/Product/Android/AndroidStudioProjects/SimpleTodo/app/src/main/res/layout/task_page_fragment.xml" value="0.2694746376811594" />
         <entry key="..\:/Product/Android/AndroidStudioProjects/SimpleTodo/app/src/main/res/layout/task_row.xml" value="0.2717391304347826" />
         <entry key="..\:/Product/Android/AndroidStudioProjects/SimpleTodo/app/src/main/res/menu/bottom_app_bar.xml" value="0.25" />
+        <entry key="..\:/Users/genso/dev/android/SimpleTodo/app/src/main/res/layout/main_activity.xml" value="0.2210144927536232" />
+        <entry key="..\:/Users/genso/dev/android/SimpleTodo/app/src/main/res/layout/main_fragment.xml" value="0.16041666666666668" />
+        <entry key="..\:/Users/genso/dev/android/SimpleTodo/app/src/main/res/layout/task_row.xml" value="0.16041666666666668" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>
