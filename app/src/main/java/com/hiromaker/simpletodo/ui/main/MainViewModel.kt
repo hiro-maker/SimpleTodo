@@ -9,7 +9,7 @@ class MainViewModel : ViewModel() {
 
     private val mCount = MutableLiveData(0)
 
-    val count: LiveData<Int> = mCount
+    val count: LiveData<Int> =  mCount
     val countMessage: LiveData<String> = Transformations.map(count) { count ->
         "count number is $count"
     }

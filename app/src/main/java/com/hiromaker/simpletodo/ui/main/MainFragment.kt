@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -18,17 +19,9 @@ import com.hiromaker.simpletodo.util.Term
 
 class MainFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = MainFragment()
-    }
+    private val viewModel by viewModels<MainViewModel>()
 
-    private lateinit var viewModel: MainViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState:
-        Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
@@ -37,9 +30,6 @@ class MainFragment : Fragment() {
 
         // TODO: Use the ViewModel
         // https://qiita.com/kasa_le/items/b0ca862e89790d3e6e80
-
-        // SampleViewModel定義
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
         // ViewModelカウンターイベントをリッスン.
         view.findViewById<AppCompatButton>(R.id.countUpButton).apply {

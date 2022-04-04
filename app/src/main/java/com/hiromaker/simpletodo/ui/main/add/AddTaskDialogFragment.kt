@@ -11,6 +11,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.FrameLayout
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -23,7 +24,7 @@ import com.hiromaker.simpletodo.data.local.entity.Task
 
 class AddTaskDialogFragment : BottomSheetDialogFragment() {
 
-    private lateinit var viewModel: AddTaskViewModel
+    private val viewModel by viewModels<AddTaskViewModel>()
 
     companion object {
         const val TAG = "AddTaskDialogFragment"
@@ -32,7 +33,6 @@ class AddTaskDialogFragment : BottomSheetDialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(DialogFragment.STYLE_NORMAL, R.style.AddTaskDialogStyle)
-        viewModel = ViewModelProvider(this)[AddTaskViewModel::class.java]
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

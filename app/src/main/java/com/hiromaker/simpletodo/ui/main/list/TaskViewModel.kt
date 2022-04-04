@@ -26,6 +26,7 @@ class TaskViewModel : ViewModel() {
     }
 
     fun deleteTask(task: Task) {
-        executorService.execute { taskDao.deleteTask(task) }
+        taskDao.deleteTask(task)
+//        executorService.execute { taskDao.deleteTask(task) }
     }
 }
