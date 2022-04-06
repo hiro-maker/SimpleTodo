@@ -22,34 +22,7 @@
             android:id="@+id/pager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@id/view_model_example"
             android:layout_below="@id/term_tab" />
-
-        <LinearLayout
-            android:id="@+id/view_model_example"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:orientation="vertical">
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/countUpButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/push" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/viewModelValueView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/main_fragment" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/countMessageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/main_fragment" />
-        </LinearLayout>
     </RelativeLayout>
 
     <com.google.android.material.bottomappbar.BottomAppBar

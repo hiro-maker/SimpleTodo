@@ -31,24 +31,6 @@ class MainFragment : Fragment() {
         // TODO: Use the ViewModel
         // https://qiita.com/kasa_le/items/b0ca862e89790d3e6e80
 
-        // ViewModelカウンターイベントをリッスン.
-        view.findViewById<AppCompatButton>(R.id.countUpButton).apply {
-            setOnClickListener {
-                viewModel.onClickCountUp()
-            }
-        }
-
-        // カウント時のイベント1
-        val viewModelValueView = view.findViewById<AppCompatTextView>(R.id.viewModelValueView)
-        viewModel.count.observe(viewLifecycleOwner) { count ->
-            viewModelValueView.text = count.toString()
-        }
-        // カウント時のイベント2
-        val countMessageView = view.findViewById<AppCompatTextView>(R.id.countMessageView)
-        viewModel.countMessage.observe(viewLifecycleOwner) { countMessage ->
-            countMessageView.text = countMessage
-        }
-
         //Header, TaskList
         val viewPager = view.findViewById<ViewPager2>(R.id.pager).apply {
             adapter = TermPageAdapter(this@MainFragment)
