@@ -15,6 +15,10 @@ import com.hiromaker.simpletodo.util.Term
 
 class TaskPageFragment(private val term: Term) : Fragment() {
 
+    companion object {
+        const val TAG = "TaskPageFragment"
+    }
+
     private val viewModel by viewModels<TaskViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -54,12 +58,6 @@ class TaskPageFragment(private val term: Term) : Fragment() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-//                    //データリストからスワイプしたデータを削除
-//                    dataList.removeAt(viewHolder.adapterPosition)
-                //リストからスワイプしたカードを削除
-                taskListView.adapter?.notifyItemRemoved(viewHolder.layoutPosition)
-
-                // FIXME 直DAO呼び出し法
                 (taskListView.adapter as TaskRecyclerViewAdapter).getItem(viewHolder.layoutPosition).let {
                     viewModel.deleteTask(it)
                 }
@@ -67,9 +65,10 @@ class TaskPageFragment(private val term: Term) : Fragment() {
 
             override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
                 super.clearView(recyclerView, viewHolder)
-                (taskListView.adapter as TaskRecyclerViewAdapter).let {
-                    viewModel.updateTaskList(it.getItemList())
-                }
+// FIXME onSwiped後に呼ばれる為、ここでupdateすると削除が取り消されてしまう
+//                (taskListView.adapter as TaskRecyclerViewAdapter).let {
+//                    viewModel.updateTaskList(it.getItemList())
+//                }
             }
         })
         mIth.attachToRecyclerView(taskListView)

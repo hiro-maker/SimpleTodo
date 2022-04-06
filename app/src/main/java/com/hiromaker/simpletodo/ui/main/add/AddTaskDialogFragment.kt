@@ -95,7 +95,6 @@ class AddTaskDialogFragment : BottomSheetDialogFragment() {
             }
             (activity as? MainActivity)?.getTermPosition()?.let { term ->
                 val task = Task(
-                    id = null,
                     icon = "",
                     title = title,
                     description = null,

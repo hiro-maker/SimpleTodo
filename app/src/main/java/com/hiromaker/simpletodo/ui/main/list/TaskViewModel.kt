@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.hiromaker.simpletodo.MyApplication
 import com.hiromaker.simpletodo.data.local.entity.Task
-
 import java.util.concurrent.Executors
 
 
@@ -27,6 +26,5 @@ class TaskViewModel : ViewModel() {
 
     fun deleteTask(task: Task) {
         taskDao.deleteTask(task)
-//        executorService.execute { taskDao.deleteTask(task) }
     }
 }

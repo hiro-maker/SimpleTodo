@@ -16,7 +16,7 @@ interface TaskDao {
     fun updateTask(task: Task)
 
     @Delete
-    fun deleteTask(task: Task)
+    fun deleteTask(vararg task: Task)
 
     @Query("SELECT * FROM Task WHERE term=:term")
     fun getTaskList(term: Int): LiveData<List<Task>>

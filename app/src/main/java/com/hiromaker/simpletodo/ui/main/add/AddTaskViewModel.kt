@@ -6,13 +6,15 @@ import com.hiromaker.simpletodo.MyApplication
 import com.hiromaker.simpletodo.data.local.entity.Task
 
 class AddTaskViewModel : ViewModel() {
+
+    private val taskDao = MyApplication.database.taskDao()
+
     fun addTask(task: Task) {
-        val dao = MyApplication.database.taskDao()
         if (TextUtils.isEmpty(task.icon)) {
-            val lastId = dao.getLastTaskId()
+            val lastId = taskDao.getLastTaskId()
             task.icon = toAlphabetic(lastId) + "."
         }
-        dao.insert(task)
+        taskDao.insert(task)
     }
 
     private fun toAlphabetic(i: Int): String {
