@@ -30,6 +30,7 @@ class TaskPageFragment(private val term: Term) : Fragment() {
         val taskListView = view.findViewById<RecyclerView>(R.id.task_list)
 
         viewModel.getTaskList(term.ordinal).observe(viewLifecycleOwner) { list ->
+            // Taskテーブルが更新されたら(insert,delete,update)リスト再作成
             taskListView.layoutManager = LinearLayoutManager(context)
             taskListView.adapter = TaskRecyclerViewAdapter(list.filter { it.term == term.ordinal })
         }
@@ -41,12 +42,12 @@ class TaskPageFragment(private val term: Term) : Fragment() {
                 val fromPos = viewHolder.adapterPosition
                 val toPos = target.adapterPosition
                 (taskListView.adapter as TaskRecyclerViewAdapter).let {
+                    // TODO DB更新したらadapterを再作成するのでカクカクになる
                     viewModel.moveTask(
                         it.getItem(fromPos),
                         it.getItem(toPos)
                     )
                 }
-                taskListView.adapter?.notifyItemMoved(fromPos, toPos)
                 return true // true if moved, false otherwise
             }
 
