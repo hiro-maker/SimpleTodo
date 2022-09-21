@@ -16,9 +16,9 @@ class TaskViewModel : ViewModel() {
         return taskDao.getTaskList(term)
     }
 
-    fun updateTaskList(taskEntities: List<Task>) {
-        taskDao.updateTaskList(taskEntities)
-    }
+//    fun updateTaskList(taskEntities: List<Task>) {
+//        taskDao.updateTaskList(taskEntities)
+//    }
 
     fun moveTask(fromTask: Task, toTask: Task) {
         executorService.execute { taskDao.moveTask(fromTask, toTask) }

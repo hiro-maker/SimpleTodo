@@ -32,7 +32,7 @@ class TaskPageFragment(private val term: Term) : Fragment() {
         viewModel.getTaskList(term.ordinal).observe(viewLifecycleOwner) { list ->
             // Taskテーブルが更新されたら(insert,delete,update)リスト再作成
             taskListView.layoutManager = LinearLayoutManager(context)
-            taskListView.adapter = TaskRecyclerViewAdapter(list.filter { it.term == term.ordinal })
+            taskListView.adapter = TaskRecyclerViewAdapter(list.filter { it.term == term.ordinal }.toMutableList())
         }
 
         // リストのユーザアクション(順序の入替&スワイプ削除).
@@ -41,14 +41,18 @@ class TaskPageFragment(private val term: Term) : Fragment() {
             override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
                 val fromPos = viewHolder.adapterPosition
                 val toPos = target.adapterPosition
-                (taskListView.adapter as TaskRecyclerViewAdapter).let {
-                    // TODO DB更新したらadapterを再作成するのでカクカクになる
-                    viewModel.moveTask(
-                        it.getItem(fromPos),
-                        it.getItem(toPos)
-                    )
-                }
-                return true // true if moved, false otherwise
+//                (taskListView.adapter as TaskRecyclerViewAdapter).let {
+//                    // TODO DB更新したらadapterを再作成するのでカクカクになる
+//                    val from = it.getItem(fromPos)
+//                    val to = it.getItem(toPos)
+//                    if (from != null && to != null) {
+//                        viewModel.moveTask(from, to)
+//                        return true // true if moved, false otherwise
+//                    }
+//                }
+
+                recyclerView.adapter?.notifyItemMoved(fromPos, toPos)
+                return false
             }
 
             override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
@@ -59,9 +63,18 @@ class TaskPageFragment(private val term: Term) : Fragment() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                (taskListView.adapter as TaskRecyclerViewAdapter).getItem(viewHolder.layoutPosition).let {
+                (taskListView.adapter as TaskRecyclerViewAdapter).getItem(viewHolder.layoutPosition)?.let {
                     viewModel.deleteTask(it)
                 }
+
+
+//                (taskListView.adapter as TaskRecyclerViewAdapter).run {
+//                    deleteItem(viewHolder.adapterPosition)
+//                    notifyItemRemoved(viewHolder.adapterPosition)
+//                    getItem(viewHolder.layoutPosition)?.let {
+//                        viewModel.deleteTask(it)
+//                    }
+//                }
             }
 
             override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
