@@ -1,44 +1,39 @@
 package com.hiromaker.simpletodo.ui.main.list
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.hiromaker.simpletodo.R
 import com.hiromaker.simpletodo.data.local.entity.Task
+import com.hiromaker.simpletodo.databinding.TaskRowBinding
 
 
-class TaskRecyclerViewAdapter(private val taskList: List<Task>) :
-    RecyclerView.Adapter<TaskRecyclerViewAdapter.TaskViewHolder>() {
+class TaskRecyclerViewAdapter(private val taskList: MutableList<Task>) : RecyclerView.Adapter<TaskRecyclerViewAdapter.TaskViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
-        return TaskViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.task_row, parent, false)
-        )
+        return TaskViewHolder(TaskRowBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val task = taskList[position]
-        holder.icon.text = task.icon
-        holder.taskName.text = task.title
-        holder.successCheckBox.isChecked = task.isSuccess
+        holder.binding.apply {
+            taskIcon.text = task.icon
+            taskName.text = task.title
+            successCheckBox.isChecked = task.isSuccess
+        }
     }
 
     override fun getItemCount() = taskList.size
 
-    fun getItem(position: Int): Task {
-        return taskList[position]
+    fun getItem(position: Int): Task? {
+        return taskList.getOrNull(position)
     }
 
     fun getItemList(): List<Task> {
         return taskList
     }
 
-    inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val icon: TextView = itemView.findViewById(R.id.task_icon)
-        val taskName: TextView = itemView.findViewById(R.id.task_name)
-        val successCheckBox: CheckBox = itemView.findViewById(R.id.success_check_box)
+    fun deleteItem(index: Int) {
+        taskList.removeAt(index)
     }
+
+    inner class TaskViewHolder(val binding: TaskRowBinding) : RecyclerView.ViewHolder(binding.root)
 }
