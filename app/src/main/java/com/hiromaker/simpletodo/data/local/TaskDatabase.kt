@@ -29,7 +29,7 @@ abstract class TaskDatabase : RoomDatabase() {
                         context.applicationContext,
                         TaskDatabase::class.java, DB_NAME
                     )
-                        .addCallback(object : RoomDatabase.Callback() {
+                        .addCallback(object : Callback() {
                             override fun onCreate(db: SupportSQLiteDatabase) {
                                 super.onCreate(db)
                                 db.execSQL(TASK_INIT_DATA)

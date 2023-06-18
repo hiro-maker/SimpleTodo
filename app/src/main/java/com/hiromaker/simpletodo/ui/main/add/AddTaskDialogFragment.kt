@@ -12,7 +12,6 @@ import android.widget.Button
 import android.widget.FrameLayout
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -63,7 +62,7 @@ class AddTaskDialogFragment : BottomSheetDialogFragment() {
                     }
                 }
             }
-            findViewById<TextInputEditText>(R.id.text_field)?.also { it ->
+            findViewById<TextInputEditText>(R.id.text_field)?.also {
                 it.postDelayed({
                     if (it.requestFocus()) {
                         (activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).apply {
